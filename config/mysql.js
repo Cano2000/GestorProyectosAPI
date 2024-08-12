@@ -1,10 +1,10 @@
 const { Sequelize } = require("sequelize");
 
-const database = "projectmanager";
-const username = "root";
-const password = "";
-const host = "127.0.0.1";
-const sequelize = new Sequelize(database, username, password, {
+const database = process.env.database || "projectmanager";
+const username = process.env.username || "root";
+const ddbbPassword = process.env.ddbbPassword || "";
+const host = process.env.host || "127.0.0.1";
+const sequelize = new Sequelize(database, username, ddbbPassword, {
   host: host,
   dialect: "mysql",
 });
@@ -20,7 +20,7 @@ const dbConnectMySQL = async () => {
 
 module.exports = { dbConnectMySQL, sequelize };
 
-// const { Sequelize } = require("sequelize");
+const { Sequelize } = require("sequelize");
 
 // const database = "bdohours";
 // const username = "bdohours";
@@ -40,4 +40,4 @@ module.exports = { dbConnectMySQL, sequelize };
 //   }
 // };
 
-// module.exports = { dbConnectMySQL, sequelize };
+module.exports = { dbConnectMySQL, sequelize };
