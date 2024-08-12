@@ -29,9 +29,11 @@ Tasks.belongsTo(Projects, {foreignKey: 'projectId'});
 // Usuarios y Proyectos (relación muchos a muchos a través de UserProjects)
 Users.belongsToMany(Projects, {through: UserProjects, foreignKey: 'userId', otherKey: 'projectId'});
 Projects.belongsToMany(Users, {through: UserProjects, foreignKey: 'projectId', otherKey: 'userId'});
+
+// Estas son las líneas importantes que necesitas corregir
 UserProjects.belongsTo(Users, {foreignKey: 'userId'});
-UserProjects.belongsTo(Projects, {foreignKey: 'projectId'});
-UserProjects.belongsTo(Roles, {foreignKey: 'roleId'}); // Asociación de roles en UserProjects
+UserProjects.belongsTo(Projects, {foreignKey: 'projectId'});  // Corregido de 'userId' a 'projectId'
+UserProjects.belongsTo(Roles, {foreignKey: 'roleId'}); // Asociación de roles en UserProjects si es necesario
 
 // Tareas y Estados
 Tasks.belongsTo(Statuses, {foreignKey: 'statusId'});
@@ -39,8 +41,8 @@ Statuses.hasMany(Tasks, {foreignKey: 'statusId'});
 
 // Usuarios y Comentarios en Tareas
 Users.hasMany(Comments, {foreignKey: 'userId'});
-Comments.belongsTo(Users, {foreignKey: 'userId'});
-Tasks.hasMany(Comments, {foreignKey: 'taskId'});
+Comments.belongsTo(Users, { as: 'user', foreignKey: 'userId' });
+Tasks.hasMany(Comments, {as: 'comments', foreignKey: 'taskId'});
 Comments.belongsTo(Tasks, {foreignKey: 'taskId'});
 
 // Sincronizar modelos con la base de datos

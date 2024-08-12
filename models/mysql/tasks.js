@@ -38,6 +38,10 @@ const Tasks = sequelize.define('Tasks', {
             model: 'users',
             key: 'id'
         }
+    },
+    order: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     }
 }, {
     tableName: 'tasks',
