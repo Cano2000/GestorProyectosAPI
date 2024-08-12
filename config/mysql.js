@@ -20,7 +20,7 @@ const dbConnectMySQL = async () => {
 
 module.exports = { dbConnectMySQL, sequelize };
 
-const { Sequelize } = require("sequelize");
+// const { Sequelize } = require("sequelize");
 
 // const database = "bdohours";
 // const username = "bdohours";
